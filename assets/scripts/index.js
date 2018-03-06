@@ -2,6 +2,8 @@
 
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
+const authEvents = require('./auth/events')
+const cardEvents = require('./card/events')
 
 $(() => {
   setAPIOrigin(location, config)
@@ -12,3 +14,10 @@ $(() => {
 
 // use require without a reference to ensure a file is bundled
 // require('./example')
+
+$(() => {
+  $('.expense-grid').hide()
+  authEvents.addHandlers()
+  cardEvents.addHandlers()
+  $('.expense-grid').on('load', cardEvents.onGridLoad())
+})
