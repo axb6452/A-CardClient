@@ -29,7 +29,7 @@ const onChangePassword = function (event) {
     $('#txtnewpassword').css({'border': 'solid', 'border-color': 'red'})
     return false
   } else {
-    $('#changePasswordModal').modal('toggle')
+    $('#modal-changepassword').modal('toggle')
     const data = {
       passwords: {
         old: $('#txtoldpassword').val(),
@@ -49,17 +49,17 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
-const onClearInputs = function (event) {
-  $('#txtoldpassword').val('')
-  $('#txtnewpassword').val('')
-}
+// const onClearInputs = function (event) {
+//   $('#txtoldpassword').val('')
+//   $('#txtnewpassword').val('')
+// }
 
 const addHandlers = function () {
   $('#signupform').on('submit', onSignUp)
   $('#loginform').on('submit', onSignIn)
   $('#btn-logout').on('click', onSignOut)
   $('#btn-submitpassword').on('click', onChangePassword)
-  $('#changePasswordModal').on('hidden.bs.modal', onClearInputs)
+  // $('#changePasswordModal').on('hidden.bs.modal', onClearInputs)
 }
 
 module.exports = {
