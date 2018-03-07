@@ -1,25 +1,195 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Example</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <title>A-Card</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body class="container-fluid">
-      <h1>Example</h1>
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
-    </body>
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+  <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> -->
+  <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+</head>
+
+<body class="container-fluid">
+  <!-- <h1>Example</h1> -->
+  <div class="login-page">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          <a class="navbar-brand" href="#">A-Card</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">About <span class="sr-only">(current)</span></a></li>
+            <!-- <li><a href="#">Link</a></li> -->
+            <!-- <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li> -->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Login</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+      <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <div class="panel-title">Sign In</div>
+          </div>
+          <div style="padding-top:30px" class="panel-body">
+            <form id="loginform" class="form-horizontal" role="form">
+              <fieldset>
+                <div style="margin-bottom: 25px" class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input id="login-username" type="text" class="form-control" name="credentials[email]" placeholder="Enter email">
+                </div>
+                <div style="margin-bottom: 25px" class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  <input id="login-password" type="password" class="form-control" name="credentials[password]" placeholder="password">
+                </div>
+                <div style="margin-top:10px" class="form-group">
+                  <div class="col-sm-12 controls">
+                    <input id="btn-login" type="submit" class="btn btn-success" value="Login">
+                    <label id="lbl-signin"></label>
+                  </div>
+                </div>
+              </fieldset>
+              <div class="form-group">
+                <div class="col-md-12 control">
+                  <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                    Don't have an account!
+                    <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">Sign Up Here</a>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <div class="panel-title">Sign Up</div>
+            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
+          </div>
+          <div class="panel-body">
+            <form id="signupform" class="form-horizontal" role="form">
+              <fieldset>
+                <div class="form-group">
+                  <label for="credentials[email]" class="col-md-3 control-label">Email</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" name="credentials[email]" placeholder="Enter Email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="credentials[password]" class="col-md-3 control-label">Password</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" name="credentials[password]" placeholder="Enter Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="credentials[password_confirmation]" class="col-md-3 control-label">Password Confirmation</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" name="credentials[password_confirmation]" placeholder="Confirm Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-offset-3 col-md-9">
+                    <input type="submit" id="btn-signup" class="btn btn-info" value="Sign Up"><i class="icon-hand-right"></i>
+                  </div>
+                </div>
+              </fieldset>
+              <label id="lbl-signup"></label>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="transactions-page">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          <a class="navbar-brand" href="#">A-Card</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Fuel Rates</a></li>
+            <li><a href="#">Transactions</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a id="btn-changepassword" data-toggle="modal" data-target="#modal-changepassword" href="#">Change Password</a></li>
+            <li><a id="btn-logout" href="#">Sign Out</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+    <div id="modal-changepassword" class="modal fade" role="dialog">
+      <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Change Password<br></h4>
+          </div>
+          <div class="modal-body">
+            <label for="txtoldpassword">OLD: </label>
+            <input class="input-user-changepassword" id="txtoldpassword" type="password" placeholder="Enter Old Password">
+            <label for="txtnewpassword">NEW: </label>
+            <input class="input-user-changepassword" id="txtnewpassword" type="password" placeholder="Enter New Password">
+          </div>
+          <div class="modal-footer">
+            <div class="btnsave">
+              <button type="submit" id="btn-submitpassword" class="btn btn-default">Change</button>
+            </div>
+            <div class="btnclose">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>

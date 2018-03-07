@@ -3,7 +3,7 @@
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 const authEvents = require('./auth/events')
-const cardEvents = require('./card/events')
+// const cardEvents = require('./card/events')
 
 $(() => {
   setAPIOrigin(location, config)
@@ -16,8 +16,9 @@ $(() => {
 // require('./example')
 
 $(() => {
-  $('.expense-grid').hide()
+  $('.login-page').show()
+  $('.transactions-page').hide()
   authEvents.addHandlers()
-  cardEvents.addHandlers()
-  $('.expense-grid').on('load', cardEvents.onGridLoad())
+  // cardEvents.addHandlers()
+  // $('.expense-grid').on('load', cardEvents.onGridLoad())
 })
