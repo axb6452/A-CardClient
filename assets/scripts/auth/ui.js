@@ -1,6 +1,8 @@
 'use strict'
 
 const store = require('../store')
+const cardApi = require('../card/api')
+const cardUi = require('../card/ui')
 
 const signUpSuccess = function (data) {
   clearAuthFields()
@@ -17,15 +19,21 @@ const signUpFailure = function () {
 }
 
 const signInSuccess = function (data) {
+  debugger
   clearAuthFields()
   store.user = data.user
   $('.login-page').hide()
+  $('.application-page').show()
+  $('.fuelrates-page').hide()
   $('.transactions-page').show()
+  $('#transactions-link').addClass('active')
   // $('#userlabel').text(store.user.email + '; id: ' + store.user.id).css('color', '#4C4C4C')
   $('#lbl-transactions').text('User ' + store.user.email + ' successfully signed in.')
     .css({'color': 'green', 'background-color': 'white', 'opacity': '100'})
   $('#lbl-transactions').fadeTo(3000, 0)
   $('#lbl-transactions').show()
+  cardApi.getAllExpenses()
+    .then(cardUi.getAllExpensesSuccess).catch(cardUi.getAllExpensesFailure)
 }
 
 const signInFailure = function () {
@@ -51,7 +59,7 @@ const changePasswordFailure = function () {
 
 const signOutSuccess = function () {
   clearAuthFields()
-  $('.transactions-page').hide()
+  $('.application-page').hide()
   $('.login-page').show()
   $('#lbl-signin').text('User ' + store.user.email + ' successfully signed out.')
     .css({'color': 'green', 'background-color': 'white', 'opacity': '100'})
