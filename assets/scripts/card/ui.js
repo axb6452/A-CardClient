@@ -6,12 +6,7 @@ const getAllFuelRatesSuccess = function (data) {
   console.log('number of records: ', data.stations.length)
   if (data.stations.length === 0) {
     $('#fuelrates-grid').hide()
-    // $('.latestsighting-class').hide()
   } else {
-    // let latestSighting = new Date(data.sightings[0].created_at)
-    // latestSighting = latestSighting.toString()
-    // latestSighting = latestSighting.slice(0, length - 15)
-    // $('#latestsighting').text(latestSighting).css('color', '#4C4C4C')
     $('#fuelrates-grid').show()
     $('#fuelrates-grid td').remove()
     let tr

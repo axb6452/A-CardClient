@@ -20,5 +20,4 @@ $(() => {
   $('.application-page').hide()
   authEvents.addHandlers()
   cardEvents.addHandlers()
-  // $('.expense-grid').on('load', cardEvents.onGridLoad())
 })

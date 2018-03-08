@@ -19,19 +19,19 @@ const onAdd = function (event) {
   let stationId
   switch ($('#txtaddstation').val()) {
     case 'Shell':
-      stationId = 2
+      stationId = 1
       break
     case 'Sunoco':
-      stationId = 4
+      stationId = 2
       break
     case 'BP':
       stationId = 3
       break
     case 'Wawa':
-      stationId = 1
+      stationId = 4
       break
     default:
-      stationId = 2
+      stationId = 1
   }
   event.preventDefault()
   if ($('#txtaddplate').val() === '') {
@@ -68,19 +68,19 @@ const onUpdate = function (event) {
   let stationId
   switch ($('#txtupdatestation').val()) {
     case 'Shell':
-      stationId = 2
+      stationId = 1
       break
     case 'Sunoco':
-      stationId = 4
+      stationId = 2
       break
     case 'BP':
       stationId = 3
       break
     case 'Wawa':
-      stationId = 1
+      stationId = 4
       break
     default:
-      stationId = 2
+      stationId = 1
   }
   event.preventDefault()
   if ($('#txtupdateid').val() === '') {
@@ -135,12 +135,6 @@ const onDelete = function (event) {
       .catch(ui.deleteExpenseFailure)
   }
 }
-
-// const onGridLoad = function (event) {
-//   api.getAllExpenses()
-//     .then(ui.getAllExpensesSuccess)
-//     .catch(ui.getAllExpensesFailure)
-// }
 
 const onClearUpdateDeleteInputs = function (event) {
   $('#txtupdateid').val('')
