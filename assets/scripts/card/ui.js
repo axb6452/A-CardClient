@@ -2,74 +2,110 @@
 const store = require('../store')
 const api = require('./api')
 
-// const clock = function () {
-//   const time = new Date()
-//   const hours = time.getHours()
-//   const minutes = time.getMinutes()
-//   const seconds = time.getSeconds()
-//
-//   $('#clock').text(harold(hours) + ':' + harold(minutes) + ':' + harold(seconds))
-//   function harold (standIn) {
-//     if (standIn < 10) {
-//       standIn = '0' + standIn
-//     }
-//     return standIn
-//   }
-// }
-
-const getAllExpensesSuccess = function (data) {
+const getAllFuelRatesSuccess = function (data) {
   debugger
-  console.log('number of records: ', data.expenses.length)
-  if (data.expenses.length === 0) {
-    $('#transactions-grid').hide()
-    $('#btnUpdate').hide()
-    $('#btnDelete').hide()
+  console.log('number of records: ', data.stations.length)
+  if (data.stations.length === 0) {
+    $('#fuelrates-grid').hide()
     // $('.latestsighting-class').hide()
   } else {
     // let latestSighting = new Date(data.sightings[0].created_at)
     // latestSighting = latestSighting.toString()
     // latestSighting = latestSighting.slice(0, length - 15)
     // $('#latestsighting').text(latestSighting).css('color', '#4C4C4C')
+    $('#fuelrates-grid').show()
+    $('#fuelrates-grid td').remove()
+    let tr
+    let tbody
+    for (let i = 0; i < data.stations.length; i++) {
+      tbody = $('<tbody>')
+      tr = $('<tr/>')
+      tr.append('<td>' + (i + 1) + '</td>')
+      tr.append('<td>' + data.stations[i].id + '</td>')
+      tr.append('<td>' + data.stations[i].name + '</td>')
+      tr.append('<td>' + data.stations[i].petrol_price + '</td>')
+      tr.append('<td>' + data.stations[i].diesel_price + '</td>')
+      tbody.append(tr)
+      $('#fuelrates-grid').append(tbody)
+    }
+  }
+  $('.fuelrates-page').show()
+  $('.transactions-page').hide()
+}
+
+const getAllFuelRatesFailure = function () {
+  debugger
+  clearFormFields()
+  $('.fuelrates-page').show()
+  $('.transactions-page').hide()
+  $('#lbl-transactions').text('Error Getting All Fuel Rates').css({'background-color': 'white', 'color': 'red', 'opacity': '100'})
+  $('#lbl-transactions').show()
+}
+
+const getAllExpensesSuccess = function (data) {
+  debugger
+  console.log(data)
+  console.log('number of records: ', data.expenses.length)
+  if (data.expenses.length === 0) {
+    $('#transactions-grid').hide()
+    $('#btnUpdate').hide()
+    $('#btnDelete').hide()
+  } else {
     $('#transactions-grid').show()
     $('#btnUpdate').show()
     $('#btnDelete').show()
-    // $('.latestsighting-class').show()
     $('#transactions-grid td').remove()
     let tr
     let tbody
     let totalSavings = 0
+    let price
+    let netTotal
+    let createdAt
     for (let i = 0; i < data.expenses.length; i++) {
-      // console.log('total gallons ', data.expenses.total_gallons)
-      // console.log(typeof (data.expenses.total_gallons))
-      // console.log('price ', data.expenses.price)
-      // console.log(typeof (data.expenses.price))
+      if (data.expenses[i].vehicle === 'Semi-trailer truck' || data.expenses.vehicle === 'Pickup truck') {
+        price = data.expenses[i].station.diesel_price
+      } else {
+        price = data.expenses[i].station.petrol_price
+      }
 
-      totalSavings = totalSavings + ((data.expenses[i].total_gallons * data.expenses[i].price) - data.expenses[i].net_total)
+      netTotal = (price * data.expenses[i].total_gallons) - ((price * data.expenses[i].discount_rate) * data.expenses[i].total_gallons)
+
+      totalSavings = totalSavings + ((data.expenses[i].total_gallons * price) - netTotal)
+
+      createdAt = new Date(data.expenses[i].created_at)
+      createdAt = createdAt.toString()
+      createdAt = createdAt.slice(0, length - 15)
+
       tbody = $('<tbody>')
       tr = $('<tr/>')
       tr.append('<td>' + (i + 1) + '</td>')
+      tr.append('<td>' + createdAt + '</td>')
       tr.append('<td>' + data.expenses[i].id + '</td>')
       tr.append('<td>' + data.expenses[i].vehicle + '</td>')
       tr.append('<td>' + data.expenses[i].plate + '</td>')
-      tr.append('<td>' + data.expenses[i].price + '</td>')
+      tr.append('<td>' + price.toFixed(3) + '</td>')
       tr.append('<td>' + data.expenses[i].total_gallons + '</td>')
       tr.append('<td>' + data.expenses[i].discount_rate + '</td>')
-      tr.append('<td>' + data.expenses[i].net_total + '</td>')
+      tr.append('<td>' + netTotal.toFixed(3) + '</td>')
       tbody.append(tr)
       $('#transactions-grid').append(tbody)
     }
     totalSavings = totalSavings.toFixed(3)
     const tfoot = $('<tfoot>')
     tr = $('<tr/>')
-    tr.append('<td></td><td></td><td></td><td></td><td><td></td><td><b>Total Savings:</b></td><td>' + totalSavings + '</td>')
+    tr.append('<td></td><td></td><td></td><td></td><td><td></td><td></td><td><b>Total Savings:</b></td><td>' + totalSavings + '</td>')
     tfoot.append(tr)
     $('#transactions-grid').append(tfoot)
   }
+  $('.fuelrates-page').hide()
+  $('.transactions-page').show()
 }
 
 const getAllExpensesFailure = function () {
   debugger
   clearFormFields()
+  $('.fuelrates-page').hide()
+  $('.transactions-page').show()
   $('#lbl-transactions').text('Error Getting All Expenses').css({'background-color': 'white', 'color': 'red', 'opacity': '100'})
   $('#lbl-transactions').show()
 }
@@ -77,7 +113,6 @@ const getAllExpensesFailure = function () {
 const createExpenseSuccess = function (data) {
   debugger
   clearFormFields()
-  // $('#latestsighting').text(Date(data.sighting.created_at))
   $('#lbl-transactions')
     .text('New Expense Created by user ' + store.user.email)
     .css({'color': 'green', 'background-color': 'white', 'opacity': '100'})
@@ -141,6 +176,8 @@ const clearFormFields = function () {
 }
 
 module.exports = {
+  getAllFuelRatesSuccess,
+  getAllFuelRatesFailure,
   getAllExpensesSuccess,
   getAllExpensesFailure,
   createExpenseSuccess,

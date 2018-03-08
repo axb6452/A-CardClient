@@ -3,6 +3,14 @@
 const config = require('../config')
 const store = require('../store')
 
+const getAllFuelRates = function () {
+  debugger
+  return $.ajax({
+    url: config.apiOrigin + '/stations',
+    method: 'GET'
+  })
+}
+
 const getAllExpenses = function () {
   debugger
   return $.ajax({
@@ -50,6 +58,7 @@ const deleteExpense = function () {
 }
 
 module.exports = {
+  getAllFuelRates,
   getAllExpenses,
   createExpense,
   updateExpense,

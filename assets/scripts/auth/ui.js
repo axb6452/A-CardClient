@@ -24,8 +24,6 @@ const signInSuccess = function (data) {
   store.user = data.user
   $('.login-page').hide()
   $('.application-page').show()
-  $('.fuelrates-page').hide()
-  $('.transactions-page').show()
   $('#transactions-link').addClass('active')
   // $('#userlabel').text(store.user.email + '; id: ' + store.user.id).css('color', '#4C4C4C')
   $('#lbl-transactions').text('User ' + store.user.email + ' successfully signed in.')

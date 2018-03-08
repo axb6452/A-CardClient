@@ -3,20 +3,49 @@
 const api = require('./api')
 const ui = require('./ui')
 
-const onAdd = function (event) {
+const onGetFuelRates = function(event) {
+  api.getAllFuelRates()
+    .then(ui.getAllFuelRatesSuccess)
+    .catch(ui.getAllFuelRatesFailure)
+}
+
+const onGetTransactions = function(event) {
+  api.getAllExpenses()
+    .then(ui.getAllExpensesSuccess)
+    .catch(ui.getAllExpensesFailure)
+}
+
+const onAdd = function(event) {
   debugger
+  let stationId
+  switch ($('#txtaddstation').val()) {
+    case 'Shell':
+      stationId = 2
+      break
+    case 'Sunoco':
+      stationId = 4
+      break
+    case 'BP':
+      stationId = 3
+      break
+    case 'Wawa':
+      stationId = 1
+      break
+    default:
+      stationId = 2
+  }
   event.preventDefault()
-  if ($('#txtaddvehicle').val() === '') {
-    $('#txtaddvehicle').css({'border': 'solid', 'border-color': 'red'})
-    return false
-  } else if ($('#txtaddplate').val() === '') {
-    $('#txtaddplate').css({'border': 'solid', 'border-color': 'red'})
-    return false
-  } else if ($('#txtaddprice').val() === '') {
-    $('#txtaddprice').css({'border': 'solid', 'border-color': 'red'})
+  if ($('#txtaddplate').val() === '') {
+    $('#txtaddplate').css({
+      'border': 'solid',
+      'border-color': 'red'
+    })
     return false
   } else if ($('#txtaddtotalgallons').val() === '') {
-    $('#txtaddtotalgallons').css({'border': 'solid', 'border-color': 'red'})
+    $('#txtaddtotalgallons').css({
+      'border': 'solid',
+      'border-color': 'red'
+    })
     return false
   } else {
     $('#addModal').modal('toggle')
@@ -24,10 +53,9 @@ const onAdd = function (event) {
       expense: {
         vehicle: $('#txtaddvehicle').val(),
         plate: $('#txtaddplate').val(),
-        price: $('#txtaddprice').val(),
         total_gallons: $('#txtaddtotalgallons').val(),
-        discount_rate: $('#txtadddiscountrate').val(),
-        net_total: (parseFloat($('#txtaddprice').val()) * parseFloat($('#txtaddtotalgallons').val())) - ((parseFloat($('#txtadddiscountrate').val()) * parseFloat($('#txtaddprice').val())) * parseFloat($('#txtaddtotalgallons').val()))
+        discount_rate: 0.05,
+        station_id: stationId
       }
     }
     console.log('data is ', data)
@@ -37,26 +65,43 @@ const onAdd = function (event) {
   }
 }
 
-const onUpdate = function (event) {
+const onUpdate = function(event) {
   debugger
+  let stationId
+  switch ($('#txtupdatestation').val()) {
+    case 'Shell':
+      stationId = 2
+      break
+    case 'Sunoco':
+      stationId = 4
+      break
+    case 'BP':
+      stationId = 3
+      break
+    case 'Wawa':
+      stationId = 1
+      break
+    default:
+      stationId = 2
+  }
   event.preventDefault()
   if ($('#txtupdateid').val() === '') {
-    $('#txtupdateid').css({'border': 'solid', 'border-color': 'red'})
-    return false
-  } else if ($('#txtupdatevehicle').val() === '') {
-    $('#txtupdatevehicle').css({'border': 'solid', 'border-color': 'red'})
+    $('#txtupdateid').css({
+      'border': 'solid',
+      'border-color': 'red'
+    })
     return false
   } else if ($('#txtupdateplate').val() === '') {
-    $('#txtupdateplate').css({'border': 'solid', 'border-color': 'red'})
-    return false
-  } else if ($('#txtupdateprice').val() === '') {
-    $('#txtupdateprice').css({'border': 'solid', 'border-color': 'red'})
+    $('#txtupdateplate').css({
+      'border': 'solid',
+      'border-color': 'red'
+    })
     return false
   } else if ($('#txtupdatetotalgallons').val() === '') {
-    $('#txtupdateprice').css({'border': 'solid', 'border-color': 'red'})
-    return false
-  } else if ($('#txtupdatediscountrate').val() === '') {
-    $('#txtupdatediscountrate').css({'border': 'solid', 'border-color': 'red'})
+    $('#txtupdateprice').css({
+      'border': 'solid',
+      'border-color': 'red'
+    })
     return false
   } else {
     $('#updateModal').modal('toggle')
@@ -65,10 +110,9 @@ const onUpdate = function (event) {
         id: $('#txtupdateid').val(),
         vehicle: $('#txtupdatevehicle').val(),
         plate: $('#txtupdateplate').val(),
-        price: $('#txtupdateprice').val(),
         total_gallons: $('#txtupdatetotalgallons').val(),
-        discount_rate: $('#txtupdatediscountrate').val(),
-        net_total: (parseFloat($('#txtupdateprice').val()) * parseFloat($('#txtupdatetotalgallons').val())) - ((parseFloat($('#txtupdatediscountrate').val()) * parseFloat($('#txtupdateprice').val())) * parseFloat($('#txtupdatetotalgallons').val()))
+        discount_rate: 0.05,
+        station_id: stationId
       }
     }
     console.log('data is ', data)
@@ -78,11 +122,14 @@ const onUpdate = function (event) {
   }
 }
 
-const onDelete = function (event) {
+const onDelete = function(event) {
   debugger
   event.preventDefault()
   if ($('#txtdeleteid').val() === '') {
-    $('#txtdeleteid').css({'border': 'solid', 'border-color': 'red'})
+    $('#txtdeleteid').css({
+      'border': 'solid',
+      'border-color': 'red'
+    })
     return false
   } else {
     $('#deleteModal').modal('toggle')
@@ -98,7 +145,7 @@ const onDelete = function (event) {
 //     .catch(ui.getAllExpensesFailure)
 // }
 
-const onClearUpdateDeleteInputs = function (event) {
+const onClearUpdateDeleteInputs = function(event) {
   $('#txtupdateid').val('')
   $('#txtupdatebird').val('')
   $('#txtupdatecharacteristics').val('')
@@ -106,7 +153,9 @@ const onClearUpdateDeleteInputs = function (event) {
   $('#txtdeleteid').val('')
 }
 
-const addHandlers = function () {
+const addHandlers = function() {
+  $('#fuelrates-link').on('click', onGetFuelRates)
+  $('#transactions-link').on('click', onGetTransactions)
   $('#btn-expense-add').on('click', onAdd)
   $('#btn-expense-update').on('click', onUpdate)
   $('#btn-expense-delete').on('click', onDelete)
