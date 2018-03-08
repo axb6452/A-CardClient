@@ -3,20 +3,19 @@
 const api = require('./api')
 const ui = require('./ui')
 
-const onGetFuelRates = function(event) {
+const onGetFuelRates = function (event) {
   api.getAllFuelRates()
     .then(ui.getAllFuelRatesSuccess)
     .catch(ui.getAllFuelRatesFailure)
 }
 
-const onGetTransactions = function(event) {
+const onGetTransactions = function (event) {
   api.getAllExpenses()
     .then(ui.getAllExpensesSuccess)
     .catch(ui.getAllExpensesFailure)
 }
 
-const onAdd = function(event) {
-  debugger
+const onAdd = function (event) {
   let stationId
   switch ($('#txtaddstation').val()) {
     case 'Shell':
@@ -65,8 +64,7 @@ const onAdd = function(event) {
   }
 }
 
-const onUpdate = function(event) {
-  debugger
+const onUpdate = function (event) {
   let stationId
   switch ($('#txtupdatestation').val()) {
     case 'Shell':
@@ -122,8 +120,7 @@ const onUpdate = function(event) {
   }
 }
 
-const onDelete = function(event) {
-  debugger
+const onDelete = function (event) {
   event.preventDefault()
   if ($('#txtdeleteid').val() === '') {
     $('#txtdeleteid').css({
@@ -145,7 +142,7 @@ const onDelete = function(event) {
 //     .catch(ui.getAllExpensesFailure)
 // }
 
-const onClearUpdateDeleteInputs = function(event) {
+const onClearUpdateDeleteInputs = function (event) {
   $('#txtupdateid').val('')
   $('#txtupdatebird').val('')
   $('#txtupdatecharacteristics').val('')
@@ -153,7 +150,7 @@ const onClearUpdateDeleteInputs = function(event) {
   $('#txtdeleteid').val('')
 }
 
-const addHandlers = function() {
+const addHandlers = function () {
   $('#fuelrates-link').on('click', onGetFuelRates)
   $('#transactions-link').on('click', onGetTransactions)
   $('#btn-expense-add').on('click', onAdd)

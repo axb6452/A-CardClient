@@ -4,7 +4,6 @@ const config = require('../config')
 const store = require('../store')
 
 const getAllFuelRates = function () {
-  debugger
   return $.ajax({
     url: config.apiOrigin + '/stations',
     method: 'GET'
@@ -12,7 +11,6 @@ const getAllFuelRates = function () {
 }
 
 const getAllExpenses = function () {
-  debugger
   return $.ajax({
     url: config.apiOrigin + '/expenses',
     method: 'GET',
@@ -23,7 +21,6 @@ const getAllExpenses = function () {
 }
 
 const createExpense = function (data) {
-  debugger
   return $.ajax({
     url: config.apiOrigin + '/expenses',
     method: 'POST',
@@ -35,7 +32,6 @@ const createExpense = function (data) {
 }
 
 const updateExpense = function (data) {
-  debugger
   return $.ajax({
     url: config.apiOrigin + '/expenses/' + $('#txtupdateid').val(),
     method: 'PATCH',
@@ -47,7 +43,6 @@ const updateExpense = function (data) {
 }
 
 const deleteExpense = function () {
-  debugger
   return $.ajax({
     url: config.apiOrigin + '/expenses/' + $('#txtdeleteid').val(),
     method: 'DELETE',

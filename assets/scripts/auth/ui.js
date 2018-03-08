@@ -19,7 +19,6 @@ const signUpFailure = function () {
 }
 
 const signInSuccess = function (data) {
-  debugger
   clearAuthFields()
   store.user = data.user
   $('.login-page').hide()
@@ -82,7 +81,6 @@ const clearAuthFields = function () {
   $('#lbl-signin').text('')
   $('#txtoldpassword').css({'border': 'solid', 'border-color': '#ccc'})
   $('#txtnewpassword').css({'border': 'solid', 'border-color': '#ccc'})
-  // $('#lblgridmessage').text('')
 }
 
 module.exports = {

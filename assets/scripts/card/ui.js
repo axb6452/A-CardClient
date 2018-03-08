@@ -3,7 +3,6 @@ const store = require('../store')
 const api = require('./api')
 
 const getAllFuelRatesSuccess = function (data) {
-  debugger
   console.log('number of records: ', data.stations.length)
   if (data.stations.length === 0) {
     $('#fuelrates-grid').hide()
@@ -34,7 +33,6 @@ const getAllFuelRatesSuccess = function (data) {
 }
 
 const getAllFuelRatesFailure = function () {
-  debugger
   clearFormFields()
   $('.fuelrates-page').show()
   $('.transactions-page').hide()
@@ -43,7 +41,6 @@ const getAllFuelRatesFailure = function () {
 }
 
 const getAllExpensesSuccess = function (data) {
-  debugger
   console.log(data)
   console.log('number of records: ', data.expenses.length)
   if (data.expenses.length === 0) {
@@ -102,7 +99,6 @@ const getAllExpensesSuccess = function (data) {
 }
 
 const getAllExpensesFailure = function () {
-  debugger
   clearFormFields()
   $('.fuelrates-page').hide()
   $('.transactions-page').show()
@@ -111,7 +107,6 @@ const getAllExpensesFailure = function () {
 }
 
 const createExpenseSuccess = function (data) {
-  debugger
   clearFormFields()
   $('#lbl-transactions')
     .text('New Expense Created by user ' + store.user.email)
@@ -123,14 +118,12 @@ const createExpenseSuccess = function (data) {
 }
 
 const createExpenseFailure = function () {
-  debugger
   clearFormFields()
   $('#lbl-transactions').text('Error Creating Expense Record').css({'background-color': 'white', 'color': 'red', 'opacity': '100'})
   $('#lbl-transactions').show()
 }
 
 const updateExpenseSuccess = function (data) {
-  debugger
   clearFormFields()
   $('#lbl-transactions')
     .text('Expense with id ' + data.expense.id + ' has been updated by user ' + store.user.email)
@@ -142,14 +135,12 @@ const updateExpenseSuccess = function (data) {
 }
 
 const updateExpenseFailure = function () {
-  debugger
   clearFormFields()
   $('#lbl-transactions').text('Error Updating Expense').css({'background-color': 'white', 'color': 'red', 'opacity': '100'})
   $('#lbl-transactions').show()
 }
 
 const deleteExpenseSuccess = function () {
-  debugger
   clearFormFields()
   const id = $('#txtdeleteid').val()
   $('#lbl-transactions')
@@ -162,7 +153,6 @@ const deleteExpenseSuccess = function () {
 }
 
 const deleteExpenseFailure = function () {
-  debugger
   clearFormFields()
   $('#lbl-transactions').text('Error Deleting Expense Record').css({'background-color': 'white', 'color': 'red', 'opacity': '100'})
   $('#lbl-transactions').show()
