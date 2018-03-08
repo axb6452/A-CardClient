@@ -54,7 +54,7 @@ const getAllExpensesSuccess = function (data) {
     let netTotal
     let createdAt
     for (let i = 0; i < data.expenses.length; i++) {
-      if (data.expenses[i].vehicle === 'Semi-trailer truck' || data.expenses.vehicle === 'Pickup truck') {
+      if (data.expenses[i].vehicle === 'Semi-trailer truck' || data.expenses[i].vehicle === 'Pickup truck') {
         price = data.expenses[i].station.diesel_price
       } else {
         price = data.expenses[i].station.petrol_price
