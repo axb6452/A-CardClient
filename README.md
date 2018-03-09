@@ -10,10 +10,10 @@ This application enables an A-card subscriber to manage fuel expenses through an
 
 ## Technologies Used
 
-HTML
-CSS
-Bootstrap
-Bootstrap min
+HTML,
+CSS,
+Bootstrap,
+Bootstrap min,
 JavaScript - jQuery
 
 ## Unsolved Problems
@@ -43,7 +43,12 @@ Total Savings = Total Gross - Total Net
 
 Initially ran into issues establishing the one-many relationship. Confusion surrounded specific fields that should be present in each resource table. I would revisit the ERD and write out pseudo code to help me think through the problem at hand. I would also consult online forums such as Stack Overflow and reference the Rails API documentation.
 
-### WireFrames and User Stories:
+### API Repository
+
+https://github.com/axb6452/A-CardAPI
+
+### WireFrames and User Stories
+
 https://files.acrobat.com/a/preview/14dafb14-09a9-4d33-8709-e6ab1897615e
 https://files.acrobat.com/a/preview/e573a199-4df6-4ed9-9a50-5c9bc1a8a934
 
