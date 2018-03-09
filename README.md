@@ -1,61 +1,57 @@
-[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
+# A-Card Client
 
-# browser-template
+## Overview
 
-A template for starting front-end projects. Webpack for `require` system, build
-pipeline, and development server. Boostrap and Handlebars.js included. No
-front-end frameworks included.
+A-Card is a chip and PIN subscription-based card enabling holders to take control of their fuel management expenses. In addition to a generous discount towards fuel-rates nation wide, subscribers also enjoy access to our state-of-the-art expense management portal, providing real time access to online reports and current, up-to-date gas station prices. Whether you're a fleet manager or individual owner, A-Card can help you plan your fuel expenses in advance and help maximize your savings.
 
-## Installation
+## Application
 
-1.  [Download](../../archive/master.zip) this template.
-1.  Unzip and rename the template directory.
-1.  Empty [`README.md`](README.md) and fill with your own content.
-1.  Replace all instances of `ACardClient` with the name of your project.
-1.  Move into the new project and `git init`
-1.  Add all of the files in your project with the command `git add -A`
-  -   *Note:* THIS IS THE ONLY TIME YOU SHOULD RUN THIS COMMAND
-1.  Commit all of your files with the command `git commit`
-  -   Your commit title should read `Initial commit`
-1.  Install dependencies with `npm install`.
+This application enables an A-card subscriber to manage fuel expenses through an expense management portal. Here, users can postulate fuel expenses for their motorvehicles and monitor total savings over a period of time. In addition to the generous discount rate of 5% offered for each purchase, Real time access to current fuel station data will enable an A-card subscriber to make better decisions on the respective gas stations they use to fuel their vehicles. Finally, continued subsciption to A-card earns a user rewards which can include discount rates of up to 20% and free trips to the gas station.
 
-## Structure
+## Technologies Used
 
-Developers should store JavaScript files in [`assets/scripts`](assets/scripts).
-The "manifest" or entry-point is
-[`assets/scripts/index.js`](assets/scripts/index.js). In general, only
-application initialization goes in this file. It's normal for developers to
-start putting all code in this file, but encourage them to break out different
-responsibilities and use the `require` syntax put references where they're
-needed.
+HTML
+CSS
+Bootstrap
+Bootstrap min
+JavaScript - jQuery
 
-Developers should set `config.apiOrigins.production` (and
-`config.apiOrigins.development` if it differs from the default).  With
-`apiOrigins` set, developers may rely on `config.apiOrigin` as the base for API
-URLs.
+## Unsolved Problems
 
-Developers should store styles in [`assets/styles`](assets/styles) and load them
-from [`assets/styles/index.scss`](assets/styles/index.scss).
+1) Need to Incorporate pagination on transactions grid for a neater layout.
+2) Have to figure out a way to conveniently enable subscribers to sort through expenses for weekly periods.
+3) Have to create admin functionality on the front-end so that an A-card administrator can manage fuel station data and card discount rates without having to query the back end.
+4) Need to develop a feasible many-many relationship between expenses and cards when A-card is expanded to include more than one card with differing discount rate benefits.
 
-Developers should use [getFormFields](forms.md) to retrieve form data to send to
-an API.
+## Planning, Process and Problem Solving
 
-To deploy a browser-template based SPA, run `grunt deploy`.
+1) Developed WireFrames, User Stories and ERD diagrams based on initial A-card expense management idea. These were evaluated by consultant Michael before I was given the green light to proceed with tackling requirements.
+2) Followed Capstone Project schedule quite religiously. Set up Rails API and Heroku deployment based on guidelines. Decided I would use the ga-browser-template for this project while I improve my proficiency in front-end frameworks such as React and Ember.
+3) Once API development for the MVC was complete, I moved on to the client (this) application. I began by performing authentication curl requests to the API before developing the login-page web app. Debugged and tested all authentication requests from web app thoroughly before moving on to resource development.
+4) Once authentication development of the login-page was complete, I debugged and tested expense curl requests before building the web app. When I started with the MVC, I had both price and net total as required input fields for create and update actions.
+5) In version 2 of project development, I condensed input fields for CU actions to include just vehicle information and hard-coded discount rate and added an additional fuel station field. I relied on the one-many relationship between the station and expense resources (where a station can have many expenses and an expense belongs to a station) to obtain the price and net total for display in the front end.
+6) I realized that automobiles use primarily petrol or diesel, so I changed the vehicle field to a drop down list to ensure simplicity in establishing the one-many relationship as I could then easily index the station price based on the vehicle selected by looking to see if the vehicle consumed petrol or diesel. This price was then eventually used to calculate the net total and subsequently the total savings via the following formula:
 
-## Tasks
+Total Gross = (price/gallon * Total Gallons)
+Total Net = (price/gallon * 0.05 * Total Gallons)
+Total Savings = Total Gross - Total Net
 
-Developers should run these often!
+7) In version 2 of the project development, I created a drop down list for fuel station with names that correspond to those preset in the production stations table. The station_id can then be determined for each station name selected (I used a switch-case conditional algorithm to this effect) and obtained station_id for each create and update action. JSON returned contained all the fields of the stations table which I could then easily parse through to obtain values for display in the user interface.
+8) Ensured appropriate page links for the transactions and fuel-rates page, as a deliverable for A-Card subscribers.
+9) Styled layout using a sky blue theme for the navigational header and other colors that were easy to the eye. Bootstrap Buttons were designated appropriately based on the events they handled.
+10) Finished with code clean up; removing unnecessary comments, debugger and console log statements.
 
--   `grunt nag` or just `grunt`: runs code quality analysis tools on your code
-    and complains
--   `grunt make-standard`: reformats all your code in the JavaScript Standard Style
--   `grunt <server|serve|s>`: generates bundles, watches, and livereloads
--   `grunt test`: runs any automated tests, depends on `grunt build`
--   `grunt build`: place bundled styles and scripts where `index.html` can find
-    them
+Initially ran into issues establishing the one-many relationship. Confusion surrounded specific fields that should be present in each resource table. I would revisit the ERD and write out pseudo code to help me think through the problem at hand. I would also consult online forums such as Stack Overflow and reference the Rails API documentation.
 
-## [License](LICENSE)
+### WireFrames and User Stories:
+https://files.acrobat.com/a/preview/14dafb14-09a9-4d33-8709-e6ab1897615e
+https://files.acrobat.com/a/preview/e573a199-4df6-4ed9-9a50-5c9bc1a8a934
 
-1.  All content is licensed under a CC­BY­NC­SA 4.0 license.
-1.  All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
+### App Screenshot
+
+![Alt text](https://drive.google.com/uc?export=view&id=1cHbLGeCFIGT3CF_ogi4DvlSuW3xWXYaU "Transactions Page screen shot")
+
+### Deployed Paths
+
+Server deployed path: https://infinite-spire-29940.herokuapp.com/
+Client deployed path: https://axb6452.github.io/A-CardClient
