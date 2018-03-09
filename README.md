@@ -10,11 +10,11 @@ This application enables an A-card subscriber to manage fuel expenses through an
 
 ## Technologies Used
 
-HTML,
-CSS,
-Bootstrap,
-Bootstrap min,
-JavaScript - jQuery
+- HTML
+- css
+- Bootstrap
+- Bootstrap min
+- JavaScript - jQuery
 
 ## Unsolved Problems
 
@@ -32,9 +32,9 @@ JavaScript - jQuery
 5) In version 2 of project development, I condensed input fields for CU actions to include just vehicle information and hard-coded discount rate and added an additional fuel station field. I relied on the one-many relationship between the station and expense resources (where a station can have many expenses and an expense belongs to a station) to obtain the price and net total for display in the front end.
 6) I realized that automobiles use primarily petrol or diesel, so I changed the vehicle field to a drop down list to ensure simplicity in establishing the one-many relationship as I could then easily index the station price based on the vehicle selected by looking to see if the vehicle consumed petrol or diesel. This price was then eventually used to calculate the net total and subsequently the total savings via the following formula:
 
-Total Gross = (price/gallon * Total Gallons)
-Total Net = (price/gallon * 0.05 * Total Gallons)
-Total Savings = Total Gross - Total Net
+- Total Gross = (price/gallon * Total Gallons)
+- Total Net = (price/gallon * 0.05 * Total Gallons)
+- Total Savings = Total Gross - Total Net
 
 7) In version 2 of the project development, I created a drop down list for fuel station with names that correspond to those preset in the production stations table. The station_id can then be determined for each station name selected (I used a switch-case conditional algorithm to this effect) and obtained station_id for each create and update action. JSON returned contained all the fields of the stations table which I could then easily parse through to obtain values for display in the user interface.
 8) Ensured appropriate page links for the transactions and fuel-rates page, as a deliverable for A-Card subscribers.
