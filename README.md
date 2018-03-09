@@ -58,5 +58,5 @@ https://files.acrobat.com/a/preview/e573a199-4df6-4ed9-9a50-5c9bc1a8a934
 
 ### Deployed Paths
 
-Server deployed path: https://infinite-spire-29940.herokuapp.com/
-Client deployed path: https://axb6452.github.io/A-CardClient
+- Server deployed path: https://infinite-spire-29940.herokuapp.com
+- Client deployed path: https://axb6452.github.io/A-CardClient
