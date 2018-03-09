@@ -49,17 +49,23 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
-// const onClearInputs = function (event) {
-//   $('#txtoldpassword').val('')
-//   $('#txtnewpassword').val('')
-// }
+const onClearInputs = function (event) {
+  $('#txtoldpassword').val('')
+  $('#txtnewpassword').val('')
+  $('#transactions-link').addClass('active')
+  $('#fuelrates-link').removeClass('active')
+  $('#btn-changepassword').removeClass('active')
+}
 
 const addHandlers = function () {
   $('#signupform').on('submit', onSignUp)
   $('#loginform').on('submit', onSignIn)
   $('#btn-logout').on('click', onSignOut)
   $('#btn-submitpassword').on('click', onChangePassword)
-  // $('#changePasswordModal').on('hidden.bs.modal', onClearInputs)
+  $('#login-link').on('click', function () { $('#about-page').hide(); $('#box-page').show(); $('#login-link').addClass('active'); $('#about-link').removeClass('active') })
+  $('#about-link').on('click', function () { $('#box-page').hide(); $('#about-page').show(); $('#login-link').removeClass('active'); $('#about-link').addClass('active') })
+  $('#btn-changepassword').on('click', function () { $('#transactions-link').removeClass('active'); $('#fuelrates-link').removeClass('active'); $('#btn-changepassword').addClass('active') })
+  $('#modal-changepassword').on('hidden.bs.modal', onClearInputs)
 }
 
 module.exports = {

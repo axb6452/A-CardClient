@@ -3,4 +3,84 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 .ud-buttons {
   float: right;
- }
+}
+
+.modal-header {
+  background: deepskyblue;
+  color: #fff;
+}
+
+.modal-body {
+  display: inline-grid;
+  text-align: center;
+}
+
+.modal-footer {
+    background: deepskyblue;
+    color: #fff;
+  .btnclose {
+    float: right;
+  }
+
+  .btnsave {
+    float: left;
+  }
+}
+
+.list-group-item {
+  border: 0;
+}
+
+.navbar-default {
+  .navbar-nav > li > a {
+    color: #fff;
+  }
+
+  .navbar-nav > .active > a,
+  .navbar-nav > .active > a:focus {
+    background-color: #1D68D1;
+    color: #fff;
+  }
+}
+
+.navbar {
+  background-color: deepskyblue;
+  border-color: #bce8f1;
+  color: #fff;
+
+  .navbar-brand {
+    color: #fff;
+  }
+}
+
+.panel-info > .panel-heading {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+}
+
+li,
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.about-body {
+  border-top: 0.5px solid #bce8f1;
+}
+
+thead {
+  background: lightsteelblue;
+  color: #000;
+}
+
+tfoot {
+  background: floralwhite;
+  color: #000;
+  font-weight: 900;
+}
+
+.row {
+  border: 0.5px solid #bce8f1;
+  border-top: 0;
+}

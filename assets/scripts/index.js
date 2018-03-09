@@ -17,6 +17,8 @@ $(() => {
 
 $(() => {
   $('.login-page').show()
+  $('#box-page').hide()
+  $('#about-page').show()
   $('.application-page').hide()
   authEvents.addHandlers()
   cardEvents.addHandlers()

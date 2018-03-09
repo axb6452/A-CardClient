@@ -4,12 +4,18 @@ const api = require('./api')
 const ui = require('./ui')
 
 const onGetFuelRates = function (event) {
+  $('#transactions-link').removeClass('active')
+  $('#btn-changepassword').removeClass('active')
+  $('#fuelrates-link').addClass('active')
   api.getAllFuelRates()
     .then(ui.getAllFuelRatesSuccess)
     .catch(ui.getAllFuelRatesFailure)
 }
 
 const onGetTransactions = function (event) {
+  $('#transactions-link').addClass('active')
+  $('#fuelrates-link').removeClass('active')
+  $('#btn-changepassword').removeClass('active')
   api.getAllExpenses()
     .then(ui.getAllExpensesSuccess)
     .catch(ui.getAllExpensesFailure)

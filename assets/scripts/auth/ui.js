@@ -8,8 +8,8 @@ const signUpSuccess = function (data) {
   clearAuthFields()
   $('#lbl-signup').text('User ' + data.user.email + ' successfully created.')
     .css({'color': 'green', 'background-color': 'white', 'opacity': '100'})
-  $('#lblSignUpMessage').show()
-  $('#lblSignUpMessage').fadeTo(3000, 0)
+  $('#lbl-signup').fadeTo(3000, 0)
+  $('#lbl-signup').show()
 }
 
 const signUpFailure = function () {
@@ -58,6 +58,8 @@ const signOutSuccess = function () {
   clearAuthFields()
   $('.application-page').hide()
   $('.login-page').show()
+  $('#about-page').hide()
+  $('#box-page').show()
   $('#lbl-signin').text('User ' + store.user.email + ' successfully signed out.')
     .css({'color': 'green', 'background-color': 'white', 'opacity': '100'})
   $('#lbl-signin').show()
