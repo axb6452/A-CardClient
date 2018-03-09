@@ -63,7 +63,6 @@ const onAdd = function (event) {
         station_id: stationId
       }
     }
-    console.log('data is ', data)
     api.createExpense(data)
       .then(ui.createExpenseSuccess)
       .catch(ui.createExpenseFailure)
@@ -119,7 +118,6 @@ const onUpdate = function (event) {
         station_id: stationId
       }
     }
-    console.log('data is ', data)
     api.updateExpense(data)
       .then(ui.updateExpenseSuccess)
       .catch(ui.updateExpenseFailure)

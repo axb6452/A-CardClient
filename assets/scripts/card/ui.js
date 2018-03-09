@@ -3,7 +3,6 @@ const store = require('../store')
 const api = require('./api')
 
 const getAllFuelRatesSuccess = function (data) {
-  console.log('number of records: ', data.stations.length)
   if (data.stations.length === 0) {
     $('#fuelrates-grid').hide()
   } else {
@@ -36,8 +35,6 @@ const getAllFuelRatesFailure = function () {
 }
 
 const getAllExpensesSuccess = function (data) {
-  console.log(data)
-  console.log('number of records: ', data.expenses.length)
   if (data.expenses.length === 0) {
     $('#transactions-grid').hide()
     $('#btnUpdate').hide()
