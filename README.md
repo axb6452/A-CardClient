@@ -47,7 +47,7 @@ Initially ran into issues establishing the one-many relationship. Confusion surr
 
 https://github.com/axb6452/A-CardAPI
 
-### WireFrames and User Stories
+### Wire frames and User Stories
 
 https://files.acrobat.com/a/preview/14dafb14-09a9-4d33-8709-e6ab1897615e
 https://files.acrobat.com/a/preview/e573a199-4df6-4ed9-9a50-5c9bc1a8a934
