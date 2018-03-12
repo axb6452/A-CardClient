@@ -22,6 +22,7 @@ const onGetTransactions = function (event) {
 }
 
 const onAdd = function (event) {
+  event.preventDefault()
   let stationId
   switch ($('#txtaddstation').val()) {
     case 'Shell':
@@ -39,14 +40,15 @@ const onAdd = function (event) {
     default:
       stationId = 1
   }
-  event.preventDefault()
-  if ($('#txtaddplate').val() === '') {
+  const checkPlateInjection = /<|>/g.test($('#txtaddplate').val())
+  const totalGallonNaN = isNaN($('#txtaddtotalgallons').val())
+  if ($('#txtaddplate').val() === '' || checkPlateInjection === true) {
     $('#txtaddplate').css({
       'border': 'solid',
       'border-color': 'red'
     })
     return false
-  } else if ($('#txtaddtotalgallons').val() === '') {
+  } else if ($('#txtaddtotalgallons').val() === '' || totalGallonNaN === true) {
     $('#txtaddtotalgallons').css({
       'border': 'solid',
       'border-color': 'red'
@@ -70,6 +72,7 @@ const onAdd = function (event) {
 }
 
 const onUpdate = function (event) {
+  event.preventDefault()
   let stationId
   switch ($('#txtupdatestation').val()) {
     case 'Shell':
@@ -87,21 +90,23 @@ const onUpdate = function (event) {
     default:
       stationId = 1
   }
-  event.preventDefault()
+  // const plate = $('#txtupdateplate').val().replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  const checkPlateInjection = /<|>/g.test($('#txtupdateplate').val())
+  const totalGallonNaN = isNaN($('#txtupdatetotalgallons').val())
   if ($('#txtupdateid').val() === '') {
     $('#txtupdateid').css({
       'border': 'solid',
       'border-color': 'red'
     })
     return false
-  } else if ($('#txtupdateplate').val() === '') {
+  } else if ($('#txtupdateplate').val() === '' || checkPlateInjection === true) {
     $('#txtupdateplate').css({
       'border': 'solid',
       'border-color': 'red'
     })
     return false
-  } else if ($('#txtupdatetotalgallons').val() === '') {
-    $('#txtupdateprice').css({
+  } else if ($('#txtupdatetotalgallons').val() === '' || totalGallonNaN === true) {
+    $('#txtupdatetotalgallons').css({
       'border': 'solid',
       'border-color': 'red'
     })

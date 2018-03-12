@@ -51,12 +51,12 @@ const getAllExpensesSuccess = function (data) {
     let netTotal
     let createdAt
     for (let i = 0; i < data.expenses.length; i++) {
+      const plate = data.expenses[i].plate.replace(/</g, '&lt;').replace(/>/g, '&gt;')
       if (data.expenses[i].vehicle === 'Semi-trailer truck' || data.expenses[i].vehicle === 'Pickup truck') {
         price = data.expenses[i].station.diesel_price
       } else {
         price = data.expenses[i].station.petrol_price
       }
-
       netTotal = (price * data.expenses[i].total_gallons) - ((price * data.expenses[i].discount_rate) * data.expenses[i].total_gallons)
 
       totalSavings = totalSavings + ((data.expenses[i].total_gallons * price) - netTotal)
@@ -71,7 +71,7 @@ const getAllExpensesSuccess = function (data) {
       tr.append('<td>' + createdAt + '</td>')
       tr.append('<td>' + data.expenses[i].id + '</td>')
       tr.append('<td>' + data.expenses[i].vehicle + '</td>')
-      tr.append('<td>' + data.expenses[i].plate + '</td>')
+      tr.append('<td>' + plate + '</td>')
       tr.append('<td>' + price.toFixed(3) + '</td>')
       tr.append('<td>' + data.expenses[i].total_gallons + '</td>')
       tr.append('<td>' + data.expenses[i].discount_rate + '</td>')

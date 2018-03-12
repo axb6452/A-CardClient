@@ -75,6 +75,7 @@ const signOutFailure = function () {
 
 const clearAuthFields = function () {
   $('#signupform').find('input:text').val('')
+  $('#signupform').find('input:password').val('')
   $('#loginform').find('input:password').val('')
   $('#loginform').find('input:text').val('')
   $('.input-user-changepassword').val('')
